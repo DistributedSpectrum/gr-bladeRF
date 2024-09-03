@@ -370,6 +370,8 @@ void bladerf_common::init(dict_t const &dict, bladerf_direction direction)
     _feature = BLADERF_FEATURE_DEFAULT;
   } else if (dict.count("feature") && _get(dict, "feature") == "oversample") {
     _feature = BLADERF_FEATURE_OVERSAMPLE;
+  } else if (dict.count("feature") && _get(dict, "feature") == "decimate") {
+    _feature = BLADERF_FEATURE_OVERSAMPLE_DECIMATE;
   } else {
     BLADERF_THROW("Unknown feature. Setting to default.");
     _feature = BLADERF_FEATURE_DEFAULT;
@@ -379,7 +381,7 @@ void bladerf_common::init(dict_t const &dict, bladerf_direction direction)
   if (status != 0) {
     BLADERF_THROW_STATUS(status, "Unabled to set feature");
   } else {
-    std::string feature_text = (_feature == BLADERF_FEATURE_OVERSAMPLE) ? "OVERSAMPLE" : "DEFAULT";
+    std::string feature_text = (_feature == BLADERF_FEATURE_OVERSAMPLE) ? "OVERSAMPLE" : (_feature == BLADERF_FEATURE_OVERSAMPLE_DECIMATE) ? "DECIMATE" : "DEFAULT";
     BLADERF_INFO(feature_text + " feature enabled");
   }
 

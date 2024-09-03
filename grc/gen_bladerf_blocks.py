@@ -69,7 +69,7 @@ parameters:
   label: 'Feature'
   dtype: enum
   default: default
-  options: ['default', 'oversample']
+  options: ['default', 'oversample', 'decimate']
   option_labels: [Default, Oversample]
 
 - id: sample_format
